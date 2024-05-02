@@ -13,6 +13,8 @@ public class HourlyEmployee extends Employee{
 
     public HourlyEmployee(String firstName, String lastName, int id, int hours, int wage) {
         super(firstName, lastName, id);
+        if(hours<0)  throw new IllegalArgumentException("Hours must be number non-negative");
+        if(wage<0) throw new IllegalArgumentException("Wage must be number non-negative");
         this.hours = hours;
         this.wage=wage;
     }
@@ -23,7 +25,9 @@ public class HourlyEmployee extends Employee{
 
     public void setHours(int hours) {
         if(hours<0)
-        {}
+        {
+            throw new IllegalArgumentException("Hours must be number non-negative");
+        }
         this.hours = hours;
 
     }
@@ -34,12 +38,14 @@ public class HourlyEmployee extends Employee{
     }
 
     public void setWage(float wage) {
+        if(wage<0)
+            throw new IllegalArgumentException("Wage must be number non-negative");
         this.wage = wage;
     }
 
     /**override**/
     @Override
-    public int earnings(){return (int) (hours * wage); }
+    public float earnings(){return (float) (hours * wage); }
 
     @Override
     public boolean equals(Object o) {
